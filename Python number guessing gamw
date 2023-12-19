@@ -1,0 +1,43 @@
+import random
+
+player_name = input("Hello! Welcome to Steven's number guessing game, where you have 5 tries to guess the number that I am thinking of. Each correct guess wins 10 points! First, what is your name? ")
+number_of_guesses = 0
+score = 0
+if player_name == "Steven":
+    print("Hey, that's my name too!")
+def main ():
+    number = random.randint(1,10)
+    global score
+    number_of_guesses = 0
+    print("Okay " + player_name + ", I am thinking of a number between 1 and 10. ")
+    while number_of_guesses < 5:
+        guess = int(input())
+        number_of_guesses += 1
+        if guess < number:
+            print('Your guess is too low')
+        if guess > number:
+            print('Your guess is too high')
+        if guess == number:
+            break
+    if guess == number:
+        score += 10
+        print('Correct! You guessed the number ' + str(number) + ' in ' + str(number_of_guesses) + ' tries!')
+    else:
+        print('You did not guess the number, The number was ' + str(number) + '. You lose...')
+def end():
+    global score
+    play_again = input("Would you like to play again?[Y/N] ")
+    while play_again.lower() == 'y':
+        if play_again.lower() == 'y':
+            number = random.randint(1,10)
+            print()
+            main()
+            play_again = input("Would you like to play again?[Y/N] ")
+            if play_again.lower() == 'n':
+                break
+    if play_again.lower() == 'n':
+        print("Okay. You scored " + str(score) + " points!")
+        input("Press enter to exit")
+        exit()
+main()
+end()
